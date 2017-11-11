@@ -2182,21 +2182,32 @@ NA_STRING <- c(" ", ".", " .", "  .", "   .", "   .    ", " .              ", " 
 
 NISPUF13 <- read.fwf(flatfile13, widths= as.numeric(NAMEWIDTH[,2]), col.names = NAMEWIDTH[,1], na.strings= NA_STRING, as.is=TRUE)
 
+############################################################################
+#                      COMBINE  DATA SETS                                  #
+############################################################################
+
+
+#Change names as needed
 library(plyr)
 names(NISPUF10) <- sub("^PROVWT$", "PROVWT_D", names(NISPUF10))
 names(NISPUF10) <- sub("^PROVWTVI$", "PROVWTVI_D", names(NISPUF10))
 names(NISPUF10)
 names(NISPUF13) <- sub("^PROVWTVIGU_D$", "PROVWTVI_D", names(NISPUF13))
  
+#Bind by column names
 library(gtools)
 NISPUF_Combined <- smartbind(NISPUF10,NISPUF11,NISPUF12,NISPUF13)
 
+#Keep only those columns that havev less than 70% NA values
 Keep <- which((colSums(is.na(NISPUF_Combined))/nrow(NISPUF_Combined))<.7)
 NISPUF_Combined_Final <- NISPUF_Combined[, Keep]
 colnames(NISPUF_Combined_Final)
+
+#Select out all other unwanted columns
 NISPUF_Combined <- NISPUF_Combined_Final[, c(1:6,13:52,142:195,240:246)]
 colnames(NISPUF_Combined)
 
+#Create labels for most predictor variables
 labels <- c(SEQNUMC="Child_ID",SEQNUMHH="Household_ID",PDAT="Prov_Data_Adequacy",
             PROVWT_D="Weight", PROVWTVI_D="Weight_Incl_Territories", HAD_CPOX="Had_Chickenpox",
             BF_ENDR06="BreastFeedingTime", BF_EXCLR06="Excl_Breast&Formula_Duration",
@@ -2232,26 +2243,21 @@ NISPUF_LABELS <- read.csv("NISPUF_LABELS.csv",encoding = 'utf-8', stringsAsFacto
 #                       EXAMINE DATASET                                    #
 ############################################################################
 
-sum(is.na(NISPUF_ALL)) #3048789
+sum(is.na(NISPUF_ALL))/(nrow(NISPUF_ALL)*ncol(NISPUF_ALL))
+#0.2840756 (Almost 30% dataset is NAs)
 
-nrow(NISPUF_ALL) #100302
+sum(NISPUF_ALL$AGEGRP==1)/(nrow(NISPUF_ALL))
+#0.2872824 (about a third are under 24 months old)
 
-ncol(NISPUF_ALL) #107
-
-107*100302 #10732314
-
-3048789/10732314 #0.2840756 (Almost 30% dataset is NAs)
-
-count(NISPUF_ALL$AGEGRP==1) #28815
-28815/100302 #0.2872824 (about a third are too young)
-
+#Put data for all children over 24 months old into new dataframe
 drops <- which(NISPUF_ALL$AGEGRP == 1)
-
 NISPUF_OVER_24MO <- NISPUF_ALL[-drops,]
 
+#Fraction of children without any record of first MMR vaccine
 (sum(is.na(NISPUF_OVER_24MO$DMMR1))/nrow(NISPUF_OVER_24MO)) #0.371662
 
+#Create a data frame specifically for examining the MMR vaccine (remove ages/numbers
+#for all other vaccines, as we don't want to use these as predictors)
 colnames(NISPUF_OVER_24MO)
-
 DF_MMR <- NISPUF_OVER_24MO[,c(1:45,62,89,101:107)]
 
