@@ -2158,6 +2158,470 @@ LIST.NAMEWIDTH13 <-
     "INS_11",2
   )
 
+LIST.NAMEWIDTH14 <-
+  c("SEQNUMC",6,
+    "SEQNUMHH",5,
+    "PDAT",1,
+    "PROVWT_D",19,
+    "PROVWT_D_TERR",19,
+    "RDDWT_D",19,
+    "RDDWT_D_TERR",19,
+    "STRATUM",4,
+    "YEAR",4,
+    "AGECPOXR",1,
+    "HAD_CPOX",2,
+    "SHOTCARD",1,
+    "AGEGRP",1,
+    "BF_ENDR06",8,
+    "BF_EXCLR06",8,
+    "BF_FORMR08",8,
+    "BFENDFL06",1,
+    "BFFORMFL06",1,
+    "C1R",1,
+    "C5R",2,
+    "CBF_01",2,
+    "CEN_REG",1,
+    "CHILDNM",1,
+    "CWIC_01",2,
+    "CWIC_02",2,
+    "EDUC1",1,
+    "FRSTBRN",1,
+    "I_HISP_K",1,
+    "INCPORAR",16,
+    "INCPOV1",1,
+    "INCQ298A",2,
+    "INTRP",1,
+    "LANGUAGE",1,
+    "M_AGEGRP",1,
+    "MARITAL2",1,
+    "MOBIL_I",1,
+    "NUM_PHONE",2,
+    "NUM_CELLS_HH",2,
+    "NUM_CELLS_PARENTS",2,
+    "RACE_K",1,
+    "RACEETHK",1,
+    "RENT_OWN",2,
+    "SEX",1,
+    "ESTIAP14",3,
+    "EST_GRANT",2,
+    "STATE",2,
+    "D6R",1,
+    "D7",1,
+    "N_PRVR",1,
+    "PROV_FAC",1,
+    "REGISTRY",1,
+    "VFC_ORDER",1,
+    "HEP_BRTH",1,
+    "HEP_FLAG",1,
+    "P_NUHEPX",1,
+    "P_NUHIBX",1,
+    "P_NUHPHB",1,
+    "P_NUMDAH",1,
+    "P_NUMDHI",1,
+    "P_NUMDIH",1,
+    "P_NUMDTA",1,
+    "P_NUMDTP",1,
+    "P_NUMFLU",1,
+    "P_NUMFLUL",1,
+    "P_NUMFLUM",1,
+    "P_NUMFLUN",1,
+    "P_NUMHEA",1,
+    "P_NUMHEN",1,
+    "P_NUMHEP",1,
+    "P_NUMHG",1,
+    "P_NUMHHY",1,
+    "P_NUMHIB",1,
+    "P_NUMHIN",1,
+    "P_NUMHION",1,
+    "P_NUMHM",1,
+    "P_NUMHS",1,
+    "P_NUMIPV",1,
+    "P_NUMMCN",1,
+    "P_NUMMMR",1,
+    "P_NUMMMRX",1,
+    "P_NUMMMX",1,
+    "P_NUMMP",1,
+    "P_NUMMPR",1,
+    "P_NUMMRV",1,
+    "P_NUMMS",1,
+    "P_NUMMSM",1,
+    "P_NUMMSR",1,
+    "P_NUMOLN",1,
+    "P_NUMOPV",1,
+    "P_NUMPCV",1,
+    "P_NUMPCP",1,
+    "P_NUMPCC",1,
+    "P_NUMPCC7",1,
+    "P_NUMPCC13",1,
+    "P_NUMPCCN",1,
+    "P_NUMPCN",1,
+    "P_NUMPOL",1,
+    "P_NUMRB",1,
+    "P_NUMRG",1,
+    "P_NUMRM",1,
+    "P_NUMRO",1,
+    "P_NUMROT",1,
+    "P_NUMTPN",1,
+    "P_NUMVRC",1,
+    "P_NUMVRN",1,
+    "P_NUMVRX",1,
+    "P_U12VRC",1,
+    "P_UTD331",1,
+    "P_UTD431",1,
+    "P_UTDHEP",1,
+    "P_UTDHEPA1",1,
+    "P_UTDHEPA2",1,
+    "P_UTDHIB",1,
+    "P_UTDHIB_ROUT_S",1,
+    "P_UTDHIB_SHORT_S",1,
+    "P_UTDMCV",1,
+    "P_UTDMMX",1,
+    "P_UTDPC3",1,
+    "P_UTDPCV",1,
+    "P_UTDPCVB13",1,
+    "P_UTDPOL",1,
+    "P_UTDROT_S",1,
+    "P_UTDTP3",1,
+    "P_UTDTP4",1,
+    "PU431331",1,
+    "P_UTD431H31_ROUT_S",1,
+    "PU431_31",1,
+    "PU4313313",1,
+    "P_UTD431H313_ROUT_S",1,
+    "PU4313314",1,
+    "P_UTD431H314_ROUT_S",1,
+    "PU431_314",1,
+    "PUT43133",1,
+    "P_UTD431H3_ROUT_S",1,
+    "PUTD4313",1,
+    "P_UTD431H_ROUT_S",1,
+    "U1D_HEP",1,
+    "U2D_HEP",1,
+    "U3D_HEP",1,
+    "DDTP1",4,
+    "DDTP2",4,
+    "DDTP3",4,
+    "DDTP4",4,
+    "DDTP5",4,
+    "DDTP6",4,
+    "DDTP7",1,
+    "DDTP8",1,
+    "DDTP9",1,
+    "DFLU1",4,
+    "DFLU2",4,
+    "DFLU3",4,
+    "DFLU4",4,
+    "DFLU5",4,
+    "DFLU6",4,
+    "DFLU7",1,
+    "DFLU8",1,
+    "DFLU9",1,
+    "DHEPA1",4,
+    "DHEPA2",4,
+    "DHEPA3",4,
+    "DHEPA4",4,
+    "DHEPA5",1,
+    "DHEPA6",1,
+    "DHEPA7",1,
+    "DHEPA8",1,
+    "DHEPA9",1,
+    "DHEPB1",4,
+    "DHEPB2",4,
+    "DHEPB3",4,
+    "DHEPB4",4,
+    "DHEPB5",4,
+    "DHEPB6",3,
+    "DHEPB7",3,
+    "DHEPB8",1,
+    "DHEPB9",1,
+    "DHIB1",4,
+    "DHIB2",4,
+    "DHIB3",4,
+    "DHIB4",4,
+    "DHIB5",4,
+    "DHIB6",3,
+    "DHIB7",3,
+    "DHIB8",1,
+    "DHIB9",1,
+    "DMMR1",4,
+    "DMMR2",4,
+    "DMMR3",3,
+    "DMMR4",3,
+    "DMMR5",1,
+    "DMMR6",1,
+    "DMMR7",1,
+    "DMMR8",1,
+    "DMMR9",1,
+    "DMP1",1,
+    "DMP2",1,
+    "DMP3",1,
+    "DMP4",1,
+    "DMP5",1,
+    "DMP6",1,
+    "DMP7",1,
+    "DMP8",1,
+    "DMP9",1,
+    "DMPRB1",3,
+    "DMPRB2",1,
+    "DMPRB3",1,
+    "DMPRB4",1,
+    "DMPRB5",1,
+    "DMPRB6",1,
+    "DMPRB7",1,
+    "DMPRB8",1,
+    "DMPRB9",1,
+    "DPCV1",4,
+    "DPCV2",4,
+    "DPCV3",4,
+    "DPCV4",4,
+    "DPCV5",4,
+    "DPCV6",3,
+    "DPCV7",3,
+    "DPCV8",1,
+    "DPCV9",1,
+    "DPOLIO1",4,
+    "DPOLIO2",4,
+    "DPOLIO3",4,
+    "DPOLIO4",4,
+    "DPOLIO5",3,
+    "DPOLIO6",3,
+    "DPOLIO7",1,
+    "DPOLIO8",1,
+    "DPOLIO9",1,
+    "DRB1",3,
+    "DRB2",1,
+    "DRB3",1,
+    "DRB4",1,
+    "DRB5",1,
+    "DRB6",1,
+    "DRB7",1,
+    "DRB8",1,
+    "DRB9",1,
+    "DROT1",3,
+    "DROT2",3,
+    "DROT3",4,
+    "DROT4",3,
+    "DROT5",3,
+    "DROT6",1,
+    "DROT7",1,
+    "DROT8",1,
+    "DROT9",1,
+    "DVRC1",4,
+    "DVRC2",4,
+    "DVRC3",4,
+    "DVRC4",1,
+    "DVRC5",1,
+    "DVRC6",1,
+    "DVRC7",1,
+    "DVRC8",1,
+    "DVRC9",1,
+    "DTP1_AGE",2,
+    "DTP2_AGE",2,
+    "DTP3_AGE",2,
+    "DTP4_AGE",2,
+    "DTP5_AGE",2,
+    "DTP6_AGE",2,
+    "DTP7_AGE",1,
+    "DTP8_AGE",1,
+    "DTP9_AGE",1,
+    "FLU1_AGE",2,
+    "FLU2_AGE",2,
+    "FLU3_AGE",2,
+    "FLU4_AGE",2,
+    "FLU5_AGE",2,
+    "FLU6_AGE",2,
+    "FLU7_AGE",1,
+    "FLU8_AGE",1,
+    "FLU9_AGE",1,
+    "HEA1_AGE",2,
+    "HEA2_AGE",2,
+    "HEA3_AGE",2,
+    "HEA4_AGE",2,
+    "HEA5_AGE",1,
+    "HEA6_AGE",1,
+    "HEA7_AGE",1,
+    "HEA8_AGE",1,
+    "HEA9_AGE",1,
+    "HEP1_AGE",2,
+    "HEP2_AGE",2,
+    "HEP3_AGE",2,
+    "HEP4_AGE",2,
+    "HEP5_AGE",2,
+    "HEP6_AGE",2,
+    "HEP7_AGE",2,
+    "HEP8_AGE",1,
+    "HEP9_AGE",1,
+    "HIB1_AGE",2,
+    "HIB2_AGE",2,
+    "HIB3_AGE",2,
+    "HIB4_AGE",2,
+    "HIB5_AGE",2,
+    "HIB6_AGE",2,
+    "HIB7_AGE",2,
+    "HIB8_AGE",1,
+    "HIB9_AGE",1,
+    "MMR1_AGE",2,
+    "MMR2_AGE",2,
+    "MMR3_AGE",2,
+    "MMR4_AGE",2,
+    "MMR5_AGE",1,
+    "MMR6_AGE",1,
+    "MMR7_AGE",1,
+    "MMR8_AGE",1,
+    "MMR9_AGE",1,
+    "MP1_AGE",1,
+    "MP2_AGE",1,
+    "MP3_AGE",1,
+    "MP4_AGE",1,
+    "MP5_AGE",1,
+    "MP6_AGE",1,
+    "MP7_AGE",1,
+    "MP8_AGE",1,
+    "MP9_AGE",1,
+    "MPR1_AGE",1,
+    "MPR2_AGE",1,
+    "MPR3_AGE",1,
+    "MPR4_AGE",1,
+    "MPR5_AGE",1,
+    "MPR6_AGE",1,
+    "MPR7_AGE",1,
+    "MPR8_AGE",1,
+    "MPR9_AGE",1,
+    "PCV1_AGE",2,
+    "PCV2_AGE",2,
+    "PCV3_AGE",2,
+    "PCV4_AGE",2,
+    "PCV5_AGE",2,
+    "PCV6_AGE",2,
+    "PCV7_AGE",2,
+    "PCV8_AGE",1,
+    "PCV9_AGE",1,
+    "POL1_AGE",2,
+    "POL2_AGE",2,
+    "POL3_AGE",2,
+    "POL4_AGE",2,
+    "POL5_AGE",2,
+    "POL6_AGE",2,
+    "POL7_AGE",1,
+    "POL8_AGE",1,
+    "POL9_AGE",1,
+    "RB1_AGE",2,
+    "RB2_AGE",1,
+    "RB3_AGE",1,
+    "RB4_AGE",1,
+    "RB5_AGE",1,
+    "RB6_AGE",1,
+    "RB7_AGE",1,
+    "RB8_AGE",1,
+    "RB9_AGE",1,
+    "ROT1_AGE",2,
+    "ROT2_AGE",2,
+    "ROT3_AGE",2,
+    "ROT4_AGE",2,
+    "ROT5_AGE",1,
+    "ROT6_AGE",1,
+    "ROT7_AGE",1,
+    "ROT8_AGE",1,
+    "ROT9_AGE",1,
+    "VRC1_AGE",2,
+    "VRC2_AGE",2,
+    "VRC3_AGE",2,
+    "VRC4_AGE",1,
+    "VRC5_AGE",1,
+    "VRC6_AGE",1,
+    "VRC7_AGE",1,
+    "VRC8_AGE",1,
+    "VRC9_AGE",1,
+    "XDTPTY1",2,
+    "XDTPTY2",2,
+    "XDTPTY3",2,
+    "XDTPTY4",2,
+    "XDTPTY5",2,
+    "XDTPTY6",2,
+    "XDTPTY7",1,
+    "XDTPTY8",1,
+    "XDTPTY9",1,
+    "XFLUTY1",2,
+    "XFLUTY2",2,
+    "XFLUTY3",2,
+    "XFLUTY4",2,
+    "XFLUTY5",2,
+    "XFLUTY6",2,
+    "XFLUTY7",1,
+    "XFLUTY8",1,
+    "XFLUTY9",1,
+    "XHEPTY1",2,
+    "XHEPTY2",2,
+    "XHEPTY3",2,
+    "XHEPTY4",2,
+    "XHEPTY5",2,
+    "XHEPTY6",2,
+    "XHEPTY7",2,
+    "XHEPTY8",1,
+    "XHEPTY9",1,
+    "XHIBTY1",2,
+    "XHIBTY2",2,
+    "XHIBTY3",2,
+    "XHIBTY4",2,
+    "XHIBTY5",2,
+    "XHIBTY6",2,
+    "XHIBTY7",2,
+    "XHIBTY8",1,
+    "XHIBTY9",1,
+    "XMMRTY1",2,
+    "XMMRTY2",2,
+    "XMMRTY3",2,
+    "XMMRTY4",2,
+    "XMMRTY5",1,
+    "XMMRTY6",1,
+    "XMMRTY7",1,
+    "XMMRTY8",1,
+    "XMMRTY9",1,
+    "XPCVTY1",2,
+    "XPCVTY2",2,
+    "XPCVTY3",2,
+    "XPCVTY4",2,
+    "XPCVTY5",2,
+    "XPCVTY6",2,
+    "XPCVTY7",2,
+    "XPCVTY8",1,
+    "XPCVTY9",1,
+    "XPOLTY1",2,
+    "XPOLTY2",2,
+    "XPOLTY3",2,
+    "XPOLTY4",2,
+    "XPOLTY5",2,
+    "XPOLTY6",2,
+    "XPOLTY7",1,
+    "XPOLTY8",1,
+    "XPOLTY9",1,
+    "XROTTY1",2,
+    "XROTTY2",2,
+    "XROTTY3",2,
+    "XROTTY4",2,
+    "XROTTY5",2,
+    "XROTTY6",1,
+    "XROTTY7",1,
+    "XROTTY8",1,
+    "XROTTY9",1,
+    "XVRCTY1",2,
+    "XVRCTY2",2,
+    "XVRCTY3",2,
+    "XVRCTY4",1,
+    "XVRCTY5",1,
+    "XVRCTY6",1,
+    "XVRCTY7",1,
+    "XVRCTY8",1,
+    "XVRCTY9",1,
+    "INS_1",2,
+    "INS_2",2,
+    "INS_3",2,
+    "INS_3A",2,
+    "INS_4_5",2,
+    "INS_6",2,
+    "INS_11",2
+  )
+
 ############################################################################
 #                   READ IN ALL DATA SETS                                  #
 ############################################################################
@@ -2182,19 +2646,18 @@ NA_STRING <- c(" ", ".", " .", "  .", "   .", "   .    ", " .              ", " 
 
 NISPUF13 <- read.fwf(flatfile13, widths= as.numeric(NAMEWIDTH[,2]), col.names = NAMEWIDTH[,1], na.strings= NA_STRING, as.is=TRUE)
 
+NAMEWIDTH <- matrix(LIST.NAMEWIDTH14, length(LIST.NAMEWIDTH14)/2, 2, byrow=T, dimnames = list(NULL, c("VARIABLE","WIDTH")))
+NA_STRING <- c(" ", ".", " .", "  .", "   .", "   .    ", " .              ", "    .              ", "     .              ", "     .             ")
+
+NISPUF14 <- read.fwf(flatfile14, widths= as.numeric(NAMEWIDTH[,2]), col.names = NAMEWIDTH[,1], na.strings= NA_STRING, as.is=TRUE)
+
 ############################################################################
 #                      COMBINE  DATA SETS                                  #
 ############################################################################
 
-
-#Change names as needed
 library(plyr)
-names(NISPUF10) <- sub("^PROVWT$", "PROVWT_D", names(NISPUF10))
-names(NISPUF10) <- sub("^PROVWTVI$", "PROVWTVI_D", names(NISPUF10))
-names(NISPUF10)
-names(NISPUF13) <- sub("^PROVWTVIGU_D$", "PROVWTVI_D", names(NISPUF13))
  
-#Bind by column names
+#Bind by column names (only for those columns that match)
 library(gtools)
 NISPUF_Combined <- smartbind(NISPUF10,NISPUF11,NISPUF12,NISPUF13)
 
@@ -2204,13 +2667,15 @@ NISPUF_Combined_Final <- NISPUF_Combined[, Keep]
 colnames(NISPUF_Combined_Final)
 
 #Select out all other unwanted columns
-NISPUF_Combined <- NISPUF_Combined_Final[, c(1:6,13:52,142:195,240:246)]
-colnames(NISPUF_Combined)
+NISPUF_Combined <- NISPUF_Combined_Final[, c(1:4,11:50,140:193,238:244)]
+colnames_used <- colnames(NISPUF_Combined)
+NISPUF_Test <- NISPUF14[, which(colnames(NISPUF14) %in% colnames_used)]
+NISPUF_Train <- NISPUF_Combined[,-39] #This was missing in the 2014 data
 
 #Create labels for most predictor variables
 labels <- c(SEQNUMC="Child_ID",SEQNUMHH="Household_ID",PDAT="Prov_Data_Adequacy",
-            PROVWT_D="Weight", PROVWTVI_D="Weight_Incl_Territories", HAD_CPOX="Had_Chickenpox",
-            BF_ENDR06="BreastFeedingTime", BF_EXCLR06="Excl_Breast&Formula_Duration",
+            HAD_CPOX="Had_Chickenpox", BF_ENDR06="BreastFeedingTime", 
+            BF_EXCLR06="Excl_Breast&Formula_Duration",
             BF_FORMR08="Age_First_Formula", C1R="Num_in_HH", C5R="Respondent_Relationship",
             CBF_01="Ever_Breastfed",CEN_REG="Census_Region", CHILDNM="Num_HH_children",
             CWIC_01="Ever_WIC", CWIC_02="Current_WIC",EDUC1="Maternal_Education",FRSTBRN=
@@ -2220,49 +2685,93 @@ labels <- c(SEQNUMC="Child_ID",SEQNUMHH="Household_ID",PDAT="Prov_Data_Adequacy"
             MOBIL_I="Moved_Since_Birth", NUM_PHONE="Num_HH_Phones",NUM_CELLS_HH="Num_HH_Cellphones",
             NUM_CELLS_PARENTS="Num_Parental_Cellphones", RACE_K="Race", RACEETHK="Ethnicity", 
             RENT_OWN="Home_Own_Rent", SEX="Gender", STATE="State_of_Residence", D6R="Num_Vaccine_Providers",
-            D7="Imm_Record_Consent", DISPCODE="Provider_Disp", N_PRVR="Num_Providers_Reponded",
+            D7="Imm_Record_Consent", N_PRVR="Num_Providers_Reponded",
             PROV_FAC="Provider_Facility", REGISTRY="Immunizations_Reported", VFC_ORDER="Health_Dept_Vaccines",
             HEP_BRTH="HepB_at_Birth",INS_1 ="Employer_Insurance",INS_2="Medicaid_Coverage",
             INS_3="S-CHIP_Coverage",INS_3A = "Medicaid_or_CHIP",INS_4_5 = "Indian_Military_Tricare",
             INS_6="Other_Insurance_Coverage",INS_11="Any_Period_Uninsured")
 Labels <- as.data.frame(labels)
 
+nrow(NISPUF_Test) #24897
+nrow(NISPUF_Train) #100302
+
+sum(is.na(NISPUF_Train)) #2898512
+sum(!is.na(NISPUF_Train)) #7532896
+#Divide...
+#38.5% NA values in training set
+
+sum(is.na(NISPUF_Test)) #815776
+sum(!is.na(NISPUF_Test)) #1773512
+#Divide... 
+815776/1773512
+#46% NA values in test set
+
+#PDAT == 2 means that there was not adequate provider data -- these should be removed
+
+Training_Set <- NISPUF_Train[which(NISPUF_Train$PDAT==1),]
+Testing_Set <- NISPUF_Test[which(NISPUF_Test$PDAT==1),]
+
+nrow(Testing_Set) #15059
+nrow(Training_Set) #67514
+
+sum(is.na(Training_Set)) #724215
+sum(!is.na(Training_Set)) #6297241
+#Divide...
+724215/6297241
+#11.5% NA values in training set (Significantly improved)
+
+sum(is.na(Testing_Set)) #155576
+sum(!is.na(Testing_Set)) #1410560
+#Divide... 
+155576/1410560
+#11% NA values in test set (Also better)
+
 ############################################################################
 #           CREATE A PERMANENT R DATASET                                   #
 ############################################################################
 
-write.table(NISPUF_Combined, file = "NISPUF_ALL.csv", row.names=F, sep=",")
-write.table(Labels, file = "NISPUF_LABELS.csv", row.names=T, sep=",")
+write.table(Training_Set, file = "TRAIN.csv", row.names=F, sep=",")
+write.table(Testing_Set, file = "TEST.csv", row.names=F, sep=",")
+write.table(Labels, file = "LABELS.csv", row.names=T, sep=",")
 
 library(tidyverse)
 
-NISPUF_ALL <- read.csv("NISPUF_ALL.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
-NISPUF_LABELS <- read.csv("NISPUF_LABELS.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
+TRAIN <- read.csv("TRAIN.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
+TEST <- read.csv("TEST.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
+LABELS <- read.csv("LABELS.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
 
 ############################################################################
-#                       EXAMINE DATASET                                    #
+#                         MORE DATA PREP                                   #
 ############################################################################
 
-sum(is.na(NISPUF_ALL))/(nrow(NISPUF_ALL)*ncol(NISPUF_ALL))
-#0.2840756 (Almost 30% dataset is NAs)
+sum(TRAIN$AGEGRP==1)/(nrow(TRAIN))
+#0.2883994 (about a third are under 24 months old)
 
-sum(NISPUF_ALL$AGEGRP==1)/(nrow(NISPUF_ALL))
-#0.2872824 (about a third are under 24 months old)
+sum(TEST$AGEGRP==1)/(nrow(TEST))
+#0.2959028 (about a third are under 24 months old)
 
 #Put data for all children over 24 months old into new dataframe
-drops <- which(NISPUF_ALL$AGEGRP == 1)
-NISPUF_OVER_24MO <- NISPUF_ALL[-drops,]
+drops <- which(TRAIN$AGEGRP == 1)
+TRAIN2 <- TRAIN[-drops,]
+
+drops <- which(TEST$AGEGRP == 1)
+TEST2 <- TEST[-drops,]
 
 #Fraction of children without any record of first MMR vaccine
-(sum(is.na(NISPUF_OVER_24MO$DMMR1))/nrow(NISPUF_OVER_24MO)) #0.371662
+(sum(is.na(TRAIN2$DMMR1))/nrow(TRAIN2)) #0.06602419 (~7%)
+
+(sum(is.na(TEST2$DMMR1))/nrow(TEST2)) #0.06017165 (~6%)
 
 #Create a data frame specifically for examining the MMR vaccine (remove ages/numbers
 #for all other vaccines, as we don't want to use these as predictors)
-colnames(NISPUF_OVER_24MO)
-DF_MMR <- NISPUF_OVER_24MO[,c(1:45,62,89,101:107)]
+colnames(TRAIN2)
+TRAIN_MMR <- TRAIN2[,c(1:43,59,86,98:104)]
+
+colnames(TEST2)
+TEST_MMR <- TRAIN2[,c(1:43,59,86,98:104)]
 
 
 #TO DO:
-#1. ADJUST FACTOR/NUMERIC COLUMNS
-#2. IMPUTE AS NECESSARY
+#1. ADJUST FACTOR/NUMERIC COLUMNS -- this will take a bit
+#2. IMPUTE AS NECESSARY -- this will be fast
 #3. MODEL :)
