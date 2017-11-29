@@ -1,5 +1,5 @@
 ############################################################################
-#                TEAM PROJECT DATA PREPARATION                             #
+#                     TEAM PROJECT DATA PREPARATION                        #
 ############################################################################
 
 #Users may need to install the Hmisc library before invoking it.
@@ -14,7 +14,7 @@ flatfile13 <- "NISPUF13.DAT"
 flatfile14 <- "NISPUF14.DAT"
 
 ############################################################################
-#                    CREATE FORMATS                                        #
+#                           CREATE FORMATS                                 #
 ############################################################################
 
 AGEGRPlevels=c(1,2,3)
@@ -160,7 +160,7 @@ UTDPCVBlevels=c(1,2,3)
 UTDPCVBlabels=c("4+ PCV7 PLUS 1+ PCV13", "4+ PCV7, NO FOLLOWING PCV13, WITH TYPE OF ALL VACCINES (IF ANY) FOLLOWING THE 4 PCV7 KNOWN", "ALL OTHERS WITH ADEQUATE PROVIDER DATA")
 
 ############################################################################
-#                              LIST.NAMEWIDTHS                             #
+#                           LIST.NAMEWIDTHS                                #
 ############################################################################
 
 LIST.NAMEWIDTH <-
@@ -2623,7 +2623,7 @@ LIST.NAMEWIDTH14 <-
   )
 
 ############################################################################
-#                   READ IN ALL DATA SETS                                  #
+#                       READ IN ALL DATA SETS                              #
 ############################################################################
 
 NAMEWIDTH <- matrix(LIST.NAMEWIDTH, 509, 2, byrow=T, dimnames = list(NULL, c("VARIABLE","WIDTH")))
@@ -2652,7 +2652,7 @@ NA_STRING <- c(" ", ".", " .", "  .", "   .", "   .    ", " .              ", " 
 NISPUF14 <- read.fwf(flatfile14, widths= as.numeric(NAMEWIDTH[,2]), col.names = NAMEWIDTH[,1], na.strings= NA_STRING, as.is=TRUE)
 
 ############################################################################
-#                      COMBINE  DATA SETS                                  #
+#                         COMBINE  DATA SETS                               #
 ############################################################################
 
 library(plyr)
@@ -2727,7 +2727,7 @@ sum(!is.na(Testing_Set)) #1410560
 #11% NA values in test set (Also better)
 
 ############################################################################
-#           CREATE A PERMANENT R DATASET                                   #
+#                     CREATE A PERMANENT R DATASET                         #
 ############################################################################
 
 write.table(Training_Set, file = "TRAIN.csv", row.names=F, sep=",")
@@ -2741,7 +2741,7 @@ TEST <- read.csv("TEST.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
 LABELS <- read.csv("LABELS.csv",encoding = 'utf-8', stringsAsFactors = FALSE)
 
 ############################################################################
-#                         MORE DATA PREP                                   #
+#                             MORE DATA PREP                               #
 ############################################################################
 
 sum(TRAIN$AGEGRP==1)/(nrow(TRAIN))
@@ -2762,16 +2762,385 @@ TEST2 <- TEST[-drops,]
 
 (sum(is.na(TEST2$DMMR1))/nrow(TEST2)) #0.06017165 (~6%)
 
+############################################################################
+#                           CREATE FORMATS                                 #
+############################################################################
+
+AGEGRPlevels=c(1,2,3)
+AGEGRPlabels=c("19 - 23 MONTHS", "24 - 29 MONTHS", "30 - 35 MONTHS")
+
+LANGUAGElevels=c(1,2,3)
+LANGUAGElabels=c("ENGLISH", "SPANISH", "OTHER")
+
+YNDKRFlevels=c(1,2,77,99)
+YNDKRFlabels=c("YES", "NO", "DON'T KNOW", "REFUSED")
+
+SHOTCOUNlevels=c(77,88,99)
+SHOTCOUNlabels=c("DON'T KNOW", "1+ BUT UNKNOWN NUMBER", "REFUSED")
+
+SCUTDlevels=c(1,2,77,88,99)
+SCUTDlabels=c("UTD / SC", "NOT UTD / SC", "DON'T KNOW", "UNKNOWN", "REFUSED")
+
+HHNUMlevels=c(0,1,50,77,99)
+HHNUMlabels=c("NONE", "AT LEAST ONE", "ALL", "DON'T KNOW", "REFUSED")
+
+YNlevels=c(1,2)
+YNlabels=c("YES", "NO")
+
+SHOTCARDlevels=c(1,2)
+SHOTCARDlabels=c("SHOTCARD", "NO SHOTCARD")
+
+Ylevels=c(1)
+Ylabels=c("YES")
+
+CHILDNMlevels=c(1,2,3,77,99)
+CHILDNMlabels=c("ONE", "TWO OR THREE", "FOUR OR MORE", "DON'T KNOW", "REFUSED")
+
+CWIClevels=c(1,2,3,77,99)
+CWIClabels=c("YES", "NO", "NEVER HEARD OF WIC", "DON'T KNOW", "REFUSED")
+
+EDUC1_levels=c(1,2,3,4,77,99)
+EDUC1_labels=c("< 12 YEARS", "12 YEARS", "> 12 YEARS, NON-COLLEGE GRAD", "COLLEGE GRAD", "DON'T KNOW", "REFUSED")
+
+HISPlevels=c(1,2,3,4,5)
+HISPlabels=c("HISPANIC", "NON-HISPANIC", "OTHER", "DON'T KNOW", "REFUSED")
+
+MAGEGRPlevels=c(1,2,3,77,99)
+MAGEGRPlabels=c("<= 19 YEARS", "20 - 29 YEARS", ">= 30 YEARS", "DON'T KNOW", "REFUSED")
+
+MOBILlevels=c(1,2,77,99)
+MOBILlabels=c("MOVED FROM DIFFERENT STATE", "DID NOT MOVE FROM DIFFERENT STATE", "DON'T KNOW", "REFUSED")
+
+SEXlevels=c(1,2,77,99)
+SEXlabels=c("MALE", "FEMALE", "DON'T KNOW", "REFUSED")
+
+INCPOVlevels=c(1,2,3,4)
+INCPOVlabels=c("ABOVE POVERTY, > $75K", "ABOVE POVERTY, <= $75K", "BELOW POVERTY", "UNKNOWN")
+
+DISPlevels=c(1,10,11,2,3,4,5,6,7,8,9)
+DISPlabels=c("COMPLETE PROVIDER INFO, NO PROBLEMS", "INCOMPLETE PROVIDER RESP, HH NOT EXACT", "INCOMPLETE PROVIDER RESP, HH WITHOUT SHOT CARD", "COMPLETE PROVIDER INFO, NO SHOT CARD", "COMPLETE PROVIDER INFO, POOR HISTORY",
+             "COMPLETE PROVIDER INFO, POOR HIST/OTHER", "INCOMPLETE PROVIDER RESP, BUT 4:3:1:3:3 INDICATED", "INCOMPLETE PROVIDER RESP, INFO MATCHES", "INCOMPLETE PROVIDER RESP, HISTORY UNKNOWN", "INCOMPLETE PROVIDER RESP, 4:3:1:3:3 WITH HH",
+             "INCOMPLETE PROVIDER RESP, MATCHES HH")
+
+HASPDA2Flevels=c(1,2)
+HASPDA2Flabels=c("CHILD HAS ADEQUATE PROVIDER DATA OR ZERO VACCINATIONS", "CHILD DOES NOT HAVE ADEQUATE PROVIDER DATA")
+
+PROVIDlevels=c(1,2,3,4,5,6,7)
+PROVIDlabels=c("ALL PUBLIC FACILITIES", "ALL HOSPITAL FACILITIES", "ALL PRIVATE FACILITIES", "ALL MILITARY/OTHER FACILITIES", "MIXED", "TYPE OF PROVIDER UNKNOWN", "ALL WIC CLINIC PROVIDERS")
+
+REGISTRYlevels=c(1,2,3,4)
+REGISTRYlabels=c("ALL PROVIDERS", "SOME BUT POSSIBLY OR DEFINITELY NOT ALL PROVIDERS", "NO PROVIDERS", "UNKNOWN/DON'T KNOW")
+
+TYPElevels=c("","01","02","03","04","05","07","08","1L","1M","1N","20","21","22","30","31","32","33","43","44","60","70","71","72","73","74","BC","D3","DH","DK","FL","FM","FN","FO","H2","HA","HB","HG","HI","HM","HS","MA","MB","MM","MP","NC","OT","RB","RG",
+             "RM","RO","TY","UN","VA","VM","VO","YF")
+TYPElabels=c("MISSING", "DT", "DTP", "DTP-UNKNOWN", "DTAP", "DTP-HIB", "DTAP-HIB", "DTAP-HEPB-IPV", "H1N1 FLU-UNKNOWN", "H1N1 FLU SPRAY", "H1N1 FLU INJECTED", "OPV", "IPV", "POLIO-UNKNOWN", "MMR", "MEASLES ONLY", "MEASLES-MUMPS", "MEASLES-RUBELLA",
+             "HEPB-HIB", "HIB ONLY-UNKNOWN", "HEPB ONLY", "PCV CONJUGATE-UNKNOWN", "PCV POLYSACCHARIDE", "PCV-UNKNOWN", "PCV CONJUGATE-7", "PCV CONJUGATE-13", "BCG (TUBERCULOSIS)", "DTAP-IPV-HIB", "DTP-HEPB", "DON'T KNOW", "SEASONAL FLU-UNKNOWN", "SEASONAL FLU SPRAY",
+             "SEASONAL FLU INJECTED", "FOUR-IN-ONE", "HIB (SANOFI OR GLAXOSMITHKLINE)", "HEPA", "HEPB-UNKNOWN", "HIB (GLAXOSMITHKLINE)", "HIB-UNKNOWN", "HIB (MERCK)", "HIB (SANOFI)", "MALARIA", "MUMPS-RUBELLA", "MCV-UNKNOWN", "MUMPS", "NEVER CODABLE", "OTHER",
+             "RUBELLA", "ROTARIX (GSK)", "ROTATEQ (MERCK)", "ROTAVIRUS-UNKNOWN", "TYPHOID", "UNCODABLE", "VARICELLA-UNKNOWN", "MMR-VARICELLA", "VARICELLA-ONLY", "YELLOW FEVER")
+
+HEPBRTlevels=c(1,2)
+HEPBRTlabels=c("AT LEAST ONE PROVIDER CHECKED GIVEN AT BIRTH", "NO PROVIDERS CHECKED GIVEN AT BIRTH")
+
+HEPFLGlevels=c(1,2)
+HEPFLGlabels=c("HEPB BIRTH SHOT DATE IMPUTED FROM SHOTCARD", "HEPB BIRTH SHOT DATE IMPUTED FROM DISTRIBUTION OF BIRTH DOSE DATES")
+
+UTDlevels=c(0,1)
+UTDlabels=c("NOT UTD", "UTD")
+
+CENREGlevels=c(1,2,3,4)
+CENREGlabels=c("NORTHEAST", "MIDWEST", "SOUTH", "WEST")
+
+STATElevels=c(1,10,11,12,13,15,16,17,18,19,2,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,4,40,41,42,44,45,46,47,48,49,5,50,51,53,54,55,56,6,66,72,78,8,9)
+STATElabels=c("ALABAMA", "DELAWARE", "DISTRICT OF COLUMBIA", "FLORIDA", "GEORGIA", "HAWAII", "IDAHO", "ILLINOIS", "INDIANA", "IOWA", "ALASKA", "KANSAS", "KENTUCKY", "LOUISIANA", "MAINE", "MARYLAND", "MASSACHUSETTS", "MICHIGAN", "MINNESOTA", "MISSISSIPPI",
+              "MISSOURI", "MONTANA", "NEBRASKA", "NEVADA", "NEW HAMPSHIRE", "NEW JERSEY", "NEW MEXICO", "NEW YORK", "NORTH CAROLINA", "NORTH DAKOTA", "OHIO", "ARIZONA", "OKLAHOMA", "OREGON", "PENNSYLVANIA", "RHODE ISLAND", "SOUTH CAROLINA", "SOUTH DAKOTA", "TENNESSEE",
+              "TEXAS", "UTAH", "ARKANSAS", "VERMONT", "VIRGINIA", "WASHINGTON", "WEST VIRGINIA", "WISCONSIN", "WYOMING", "CALIFORNIA", "GUAM", "PUERTO RICO", "U.S. VIRGIN ISLANDS", "COLORADO", "CONNECTICUT")
+FLUUTDlevels=c(1,2,3)
+FLUUTDlabels=c("VACCINATED", "NOT VACCINATED", "NOT ELIGIBLE")
+
+RACE_PUFlevels=c(1,2,3)
+RACE_PUFlabels=c("WHITE ONLY", "BLACK ONLY", "OTHER + MULTIPLE RACE")
+
+AGECPOXRlevels=c(1,2,3,4)
+AGECPOXRlabels=c("0 TO 6 MONTHS OLD", "7 TO 12 MONTHS OLD", "13 TO 18 MONTHS OLD", "19+ MONTHS OLD")
+
+C1Rlevels=c(1,2,3,4,5,6,7,8)
+C1Rlabels=c("1", "2", "3", "4", "5", "6", "7", "8+")
+
+C5Rlevels=c(1,2,3,4,77,99)
+C5Rlabels=c("MOTHER (STEP, FOSTER, ADOPTIVE) OR FEMALE GUARDIAN", "FATHER (STEP, FOSTER, ADOPTIVE) OR MALE GUARDIAN", "GRANDPARENT", "OTHER FAMILY MEMBER/FRIEND", "DON'T KNOW", "REFUSED")
+
+INCQ298Alevels=c(10,11,12,13,14,3,4,5,6,7,77,8,9,99)
+INCQ298Alabels=c("$35001 - $40000", "$40001 - $50000", "$50001 - $60000", "$60001 - $75000", "$75001+", "$0 - $7500", "$7501 - $10000", "$10001 - $17500", "$17501 - $20000", "$20001 - $25000", "DON'T KNOW", "$25001 - $30000", "$30001 - $35000", "REFUSED")
+
+RACEETHKlevels=c(1,2,3,4)
+RACEETHKlabels=c("HISPANIC", "NON-HISPANIC WHITE ONLY", "NON-HISPANIC BLACK ONLY", "NON-HISPANIC OTHER + MULTIPLE RACE")
+
+D6Rlevels=c(0,1,2,3)
+D6Rlabels=c("0", "1", "2", "3+")
+
+FRSTBRNlevels=c(1,2,77,99)
+FRSTBRNlabels=c("NO", "YES", "DON'T KNOW", "REFUSED")
+
+CHARIDlevels=c( )
+CHARIDlabels=c("MISSING")
+
+
+TRAIN2$BF_FORMR08 <- as.numeric(TRAIN2$BF_FORMR08)
+TEST2$BF_FORMR08 <- as.numeric(TEST2$BF_FORMR08)
+TRAIN2$BF_FORMR08[is.na(TRAIN2$BF_FORMR08)] <- 888
+TEST2$BF_FORMR08[is.na(TEST2$BF_FORMR08)] <- 888
+TEST2$BF_FORMR08[TEST2$BF_FORMR08 != 888] <- NA
+TRAIN2$BF_FORMR08[TRAIN2$BF_FORMR08 != 888] <- NA
+TRAIN2$BF_FORMR08[is.na(TRAIN2$BF_FORMR08)] <- 0
+TEST2$BF_FORMR08[is.na(TEST2$BF_FORMR08)] <- 0
+BF_FORMR08levels=c(0,888)
+BF_FORMR08labels=c("FED FORMULA", "NOT FED FORMULA")
+
+
+RENTOWNlevels=c(1,2,3,77,99)
+RENTOWNlabels=c("OWNED OR BEING BOUGHT", "RENTED", "OTHER ARRANGMENT", "DON'T KNOW", "REFUSED")
+
+NUM_PHONlevels=c(1,2,3,4,77,99)
+NUM_PHONlabels=c("ONE", "TWO", "THREE OR MORE", "NONE", "DON'T KNOW", "REFUSED")
+
+INS_STATlevels=c(1,2,3)
+INS_STATlabels=c("YES", "NO", "NOT ASCERTAINED")
+
+MAR_PUF2_levels=c(1,2)
+MAR_PUF2_labels=c("MARRIED", "NEVER MARRIED/WIDOWED/DIVORCED/SEPARATED/DECEASED")
+
+UTDPCVBlevels=c(1,2,3)
+UTDPCVBlabels=c("4+ PCV7 PLUS 1+ PCV13", "4+ PCV7, NO FOLLOWING PCV13, WITH TYPE OF ALL VACCINES (IF ANY) FOLLOWING THE 4 PCV7 KNOWN", "ALL OTHERS WITH ADEQUATE PROVIDER DATA")
+
+SAMPFRAMElevels=c(1,2)
+SAMPFRAMElabels=c("LANDLINE SAMPLE FRAME", "CELL-PHONE SAMPLE FRAME")
+
+ESTIAP11Flevels=c(1,10,103,11,12,13,14,16,17,18,19,2,20,22,25,27,28,29,30,31,34,35,36,38,4,40,41,44,46,47,49,5,50,51,52,53,54,55,56,57,58,59,6,60,61,62,63,64,65,66,68,7,72,73,74,75,76,77,8,95)
+ESTIAP11Flabels=c("CT", "NY-REST OF STATE", "MD-PRINCE GEORGE'S COUNTY", "NY-CITY OF NEW YORK", "DC", "DE", "MD-REST OF STATE", "PA-REST OF STATE", "PA-PHILADELPHIA COUNTY", "VA", "WV", "MA", "AL", "FL", "GA", "KY", "MS", "NC", "SC", "TN",
+                  "IL-REST OF STATE", "IL-CITY OF CHICAGO", "IN", "MI", "ME", "MN", "OH", "WI", "AR", "LA", "NM", "NH", "OK", "TX-REST OF STATE", "TX-DALLAS COUNTY", "TX-EL PASO COUNTY", "TX-CITY OF HOUSTON", "TX-BEXAR COUNTY", "IA", "KS", "MO", "NE", "RI", "CO", "MT",
+                  "ND", "SD", "UT", "WY", "AZ", "CA", "VT", "HI", "NV", "AK", "ID", "OR", "WA", "NJ", "US VIRGIN ISLANDS")
+
+############################################################################
+#                   ASSIGN FACTOR/NUMERIC VARIABLES                        #
+############################################################################
+
+# colnames(TRAIN2)
+
+'%!in%' <- function(x,y)!('%in%'(x,y))
+
+factors = c("AGEGRP","LANGUAGE", "HAD_CPOX", "CBF_01", "CWIC_02", "INTRP", "INS_1", "INS_2", "INS_3",
+            "INS_3A", "INS_4_5", "INS_6", "INS_11", "D7", "SHOTCARD", "CHILDNM", "CWIC_01", "EDUC1",
+            "I_HISP_K", "M_AGEGRP", "MOBIL_I", "SEX", "INCPOV1", "PDAT", "PROV_FAC",
+            "REGISTRY", "VFC_ORDER", "HEP_BRTH", "CEN_REG", "STATE", "RACE_K", "C1R", "C5R", "INCQ298A",
+            "RACEETHK", "D6R", "N_PRVR", "FRSTBRN", "SEQNUMC", "SEQNUMHH", "BF_FORMR08", "RENT_OWN",
+            "NUM_PHONE", "NUM_CELLS_HH", "NUM_CELLS_PARENTS", "MARITAL2","YEAR")
+# 
+# TRAIN2[factors] <- lapply(TRAIN2[factors], factor)
+# TEST2[factors] <- lapply(TEST2[factors], factor)
+
+# #factors %!in% colnames(TRAIN2) #Used this for editing purposes
+# 
+
+numerics_nums <- which(colnames(TRAIN2) %!in% factors)
+numerics <- colnames(TRAIN2[,numerics_nums])
+TRAIN2[numerics] <- lapply(TRAIN2[numerics], as.numeric)
+TEST2[numerics] <- lapply(TEST2[numerics], as.numeric)
+
+
+TRAIN2$AGEGRP <- factor(TRAIN2$AGEGRP, levels=AGEGRPlevels, labels=AGEGRPlabels)
+TRAIN2$LANGUAGE <- factor(TRAIN2$LANGUAGE, levels=LANGUAGElevels, labels=LANGUAGElabels)
+TRAIN2$HAD_CPOX <- factor(TRAIN2$HAD_CPOX, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$CBF_01 <- factor(TRAIN2$CBF_01, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$CWIC_02 <- factor(TRAIN2$CWIC_02, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TRAIN2$INTRP <- factor(TRAIN2$INTRP, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_1 <- factor(TRAIN2$INS_1, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_2 <- factor(TRAIN2$INS_2, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_3 <- factor(TRAIN2$INS_3, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_3A <- factor(TRAIN2$INS_3A, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TRAIN2$INS_4_5 <- factor(TRAIN2$INS_4_5, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_6 <- factor(TRAIN2$INS_6, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TRAIN2$INS_11 <- factor(TRAIN2$INS_11, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TRAIN2$D7 <- factor(TRAIN2$D7, levels=YNlevels, labels=YNlabels)
+TRAIN2$SHOTCARD <- factor(TRAIN2$SHOTCARD, levels=SHOTCARDlevels, labels=SHOTCARDlabels)
+
+TRAIN2$CHILDNM <- factor(TRAIN2$CHILDNM, levels=CHILDNMlevels, labels=CHILDNMlabels)
+TRAIN2$CWIC_01 <- factor(TRAIN2$CWIC_01, levels=CWIClevels, labels=CWIClabels)
+TRAIN2$EDUC1 <- factor(TRAIN2$EDUC1, levels=EDUC1_levels, labels=EDUC1_labels)
+TRAIN2$I_HISP_K <- factor(TRAIN2$I_HISP_K, levels=HISPlevels, labels=HISPlabels)
+
+TRAIN2$M_AGEGRP <- factor(TRAIN2$M_AGEGRP, levels=MAGEGRPlevels, labels=MAGEGRPlabels)
+TRAIN2$MOBIL_I <- factor(TRAIN2$MOBIL_I, levels=MOBILlevels, labels=MOBILlabels)
+TRAIN2$SEX <- factor(TRAIN2$SEX, levels=SEXlevels, labels=SEXlabels)
+TRAIN2$INCPOV1 <- factor(TRAIN2$INCPOV1, levels=INCPOVlevels, labels=INCPOVlabels)
+
+TRAIN2$PDAT <- factor(TRAIN2$PDAT, levels=HASPDA2Flevels, labels=HASPDA2Flabels)
+TRAIN2$PROV_FAC <- factor(TRAIN2$PROV_FAC, levels=PROVIDlevels, labels=PROVIDlabels)
+TRAIN2$REGISTRY <- factor(TRAIN2$REGISTRY, levels=REGISTRYlevels, labels=REGISTRYlabels)
+TRAIN2$VFC_ORDER <- factor(TRAIN2$VFC_ORDER, levels=REGISTRYlevels, labels=REGISTRYlabels)
+
+TRAIN2$HEP_BRTH <- factor(TRAIN2$HEP_BRTH, levels=HEPBRTlevels, labels=HEPBRTlabels)
+
+TRAIN2$CEN_REG <- factor(TRAIN2$CEN_REG, levels=CENREGlevels, labels=CENREGlabels)
+TRAIN2$STATE <- factor(TRAIN2$STATE, levels=STATElevels, labels=STATElabels)
+
+TRAIN2$RACE_K <- factor(TRAIN2$RACE_K, levels=RACE_PUFlevels, labels=RACE_PUFlabels)
+
+TRAIN2$C1R <- factor(TRAIN2$C1R, levels=C1Rlevels, labels=C1Rlabels)
+TRAIN2$C5R <- factor(TRAIN2$C5R, levels=C5Rlevels, labels=C5Rlabels)
+
+TRAIN2$INCQ298A <- factor(TRAIN2$INCQ298A, levels=INCQ298Alevels, labels=INCQ298Alabels)
+TRAIN2$RACEETHK <- factor(TRAIN2$RACEETHK, levels=RACEETHKlevels, labels=RACEETHKlabels)
+TRAIN2$D6R <- factor(TRAIN2$D6R, levels=D6Rlevels, labels=D6Rlabels)
+TRAIN2$N_PRVR <- factor(TRAIN2$N_PRVR, levels=D6Rlevels, labels=D6Rlabels)
+TRAIN2$FRSTBRN <- factor(TRAIN2$FRSTBRN, levels=FRSTBRNlevels, labels=FRSTBRNlabels)
+
+TRAIN2$SEQNUMC <- as.factor(TRAIN2$SEQNUMC)
+TRAIN2$SEQNUMHH <- as.factor(TRAIN2$SEQNUMHH)
+TRAIN2$BF_FORMR08 <- factor(TRAIN2$BF_FORMR08, levels=BF_FORMR08levels, labels=BF_FORMR08labels)
+TRAIN2$RENT_OWN <- factor(TRAIN2$RENT_OWN, levels=RENTOWNlevels, labels=RENTOWNlabels)
+TRAIN2$NUM_PHONE <- factor(TRAIN2$NUM_PHONE, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+
+TRAIN2$NUM_CELLS_HH <- factor(TRAIN2$NUM_CELLS_HH, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+TRAIN2$NUM_CELLS_PARENTS <- factor(TRAIN2$NUM_CELLS_PARENTS, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+TRAIN2$MARITAL2 <- factor(TRAIN2$MARITAL2, levels=MAR_PUF2_levels, labels=MAR_PUF2_labels)
+
+TRAIN2$YEAR <- as.factor(TRAIN2$YEAR)
+
+## REPEAT FACTORS WITH TEST SET...
+
+TEST2$AGEGRP <- factor(TEST2$AGEGRP, levels=AGEGRPlevels, labels=AGEGRPlabels)
+TEST2$LANGUAGE <- factor(TEST2$LANGUAGE, levels=LANGUAGElevels, labels=LANGUAGElabels)
+TEST2$HAD_CPOX <- factor(TEST2$HAD_CPOX, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$CBF_01 <- factor(TEST2$CBF_01, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$CWIC_02 <- factor(TEST2$CWIC_02, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TEST2$INTRP <- factor(TEST2$INTRP, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_1 <- factor(TEST2$INS_1, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_2 <- factor(TEST2$INS_2, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_3 <- factor(TEST2$INS_3, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_3A <- factor(TEST2$INS_3A, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TEST2$INS_4_5 <- factor(TEST2$INS_4_5, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_6 <- factor(TEST2$INS_6, levels=YNDKRFlevels, labels=YNDKRFlabels)
+TEST2$INS_11 <- factor(TEST2$INS_11, levels=YNDKRFlevels, labels=YNDKRFlabels)
+
+TEST2$D7 <- factor(TEST2$D7, levels=YNlevels, labels=YNlabels)
+TEST2$SHOTCARD <- factor(TEST2$SHOTCARD, levels=SHOTCARDlevels, labels=SHOTCARDlabels)
+
+TEST2$CHILDNM <- factor(TEST2$CHILDNM, levels=CHILDNMlevels, labels=CHILDNMlabels)
+TEST2$CWIC_01 <- factor(TEST2$CWIC_01, levels=CWIClevels, labels=CWIClabels)
+TEST2$EDUC1 <- factor(TEST2$EDUC1, levels=EDUC1_levels, labels=EDUC1_labels)
+TEST2$I_HISP_K <- factor(TEST2$I_HISP_K, levels=HISPlevels, labels=HISPlabels)
+
+TEST2$M_AGEGRP <- factor(TEST2$M_AGEGRP, levels=MAGEGRPlevels, labels=MAGEGRPlabels)
+TEST2$MOBIL_I <- factor(TEST2$MOBIL_I, levels=MOBILlevels, labels=MOBILlabels)
+TEST2$SEX <- factor(TEST2$SEX, levels=SEXlevels, labels=SEXlabels)
+TEST2$INCPOV1 <- factor(TEST2$INCPOV1, levels=INCPOVlevels, labels=INCPOVlabels)
+
+TEST2$PDAT <- factor(TEST2$PDAT, levels=HASPDA2Flevels, labels=HASPDA2Flabels)
+TEST2$PROV_FAC <- factor(TEST2$PROV_FAC, levels=PROVIDlevels, labels=PROVIDlabels)
+TEST2$REGISTRY <- factor(TEST2$REGISTRY, levels=REGISTRYlevels, labels=REGISTRYlabels)
+TEST2$VFC_ORDER <- factor(TEST2$VFC_ORDER, levels=REGISTRYlevels, labels=REGISTRYlabels)
+
+TEST2$HEP_BRTH <- factor(TEST2$HEP_BRTH, levels=HEPBRTlevels, labels=HEPBRTlabels)
+
+TEST2$CEN_REG <- factor(TEST2$CEN_REG, levels=CENREGlevels, labels=CENREGlabels)
+TEST2$STATE <- factor(TEST2$STATE, levels=STATElevels, labels=STATElabels)
+
+TEST2$RACE_K <- factor(TEST2$RACE_K, levels=RACE_PUFlevels, labels=RACE_PUFlabels)
+
+TEST2$C1R <- factor(TEST2$C1R, levels=C1Rlevels, labels=C1Rlabels)
+TEST2$C5R <- factor(TEST2$C5R, levels=C5Rlevels, labels=C5Rlabels)
+
+TEST2$INCQ298A <- factor(TEST2$INCQ298A, levels=INCQ298Alevels, labels=INCQ298Alabels)
+TEST2$RACEETHK <- factor(TEST2$RACEETHK, levels=RACEETHKlevels, labels=RACEETHKlabels)
+TEST2$D6R <- factor(TEST2$D6R, levels=D6Rlevels, labels=D6Rlabels)
+TEST2$N_PRVR <- factor(TEST2$N_PRVR, levels=D6Rlevels, labels=D6Rlabels)
+TEST2$FRSTBRN <- factor(TEST2$FRSTBRN, levels=FRSTBRNlevels, labels=FRSTBRNlabels)
+
+TEST2$SEQNUMC <- as.factor(TEST2$SEQNUMC)
+TEST2$SEQNUMHH <- as.factor(TEST2$SEQNUMHH)
+TEST2$BF_FORMR08 <- factor(TEST2$BF_FORMR08, levels=BF_FORMR08levels, labels=BF_FORMR08labels)
+TEST2$RENT_OWN <- factor(TEST2$RENT_OWN, levels=RENTOWNlevels, labels=RENTOWNlabels)
+TEST2$NUM_PHONE <- factor(TEST2$NUM_PHONE, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+
+TEST2$NUM_CELLS_HH <- factor(TEST2$NUM_CELLS_HH, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+TEST2$NUM_CELLS_PARENTS <- factor(TEST2$NUM_CELLS_PARENTS, levels=NUM_PHONlevels, labels=NUM_PHONlabels)
+TEST2$MARITAL2 <- factor(TEST2$MARITAL2, levels=MAR_PUF2_levels, labels=MAR_PUF2_labels)
+
+TEST2$YEAR <- as.factor(TEST2$YEAR)
+
+############################################################################
+#                                IMPUTE                                    #
+############################################################################
+
+#MODE FUNCTION
+getmode <- function(v) {
+  uniqv <- unique(v)
+  v <- v[!is.na(v)]
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+rownames(TRAIN2) <- NULL
+rownames(TEST2) <- NULL
+
+#for loop to impute mode for categorical and median for numerical
+for (i in 1:ncol(TRAIN2)){
+  if (class(TRAIN2[,i]) == 'factor'){
+    TRAIN2[which(is.na(TRAIN2[,i])),i] <- getmode(TRAIN2[,i])
+  }
+}
+
+for (i in 1:ncol(TEST2)){
+  if (class(TEST2[,i]) == 'factor'){
+    TEST2[which(is.na(TEST2[,i])),i] <- getmode(TEST2[,i])
+  }
+}
+
+TRAIN2[which(is.na(TRAIN2[,8])),8] <- median(TRAIN2[,8],na.rm=TRUE)
+TRAIN2[which(is.na(TRAIN2[,9])),9] <- median(TRAIN2[,9],na.rm=TRUE)
+TRAIN2[which(is.na(TRAIN2[,21])),21] <- median(TRAIN2[,21],na.rm=TRUE)
+
+TEST2[which(is.na(TEST2[,8])),8] <- median(TEST2[,8],na.rm=TRUE)
+TEST2[which(is.na(TEST2[,9])),9] <- median(TEST2[,9],na.rm=TRUE)
+TEST2[which(is.na(TEST2[,21])),21] <- median(TEST2[,21],na.rm=TRUE)
+
+############################################################################
+#                           CREATE MMR DATAFRAME                           #
+############################################################################
+
 #Create a data frame specifically for examining the MMR vaccine (remove ages/numbers
 #for all other vaccines, as we don't want to use these as predictors)
 colnames(TRAIN2)
 TRAIN_MMR <- TRAIN2[,c(1:43,59,86,98:104)]
 
 colnames(TEST2)
-TEST_MMR <- TRAIN2[,c(1:43,59,86,98:104)]
+TEST_MMR <- TEST2[,c(1:43,59,86,98:104)]
 
+TRAIN_MMR$Missing_MMR <- as.numeric(I(is.na(TRAIN_MMR$DMMR1)))
+TEST_MMR$Missing_MMR <- as.numeric(I(is.na(TEST_MMR$DMMR1)))
 
-#TO DO:
-#1. ADJUST FACTOR/NUMERIC COLUMNS -- this will take a bit
-#2. IMPUTE AS NECESSARY -- this will be fast
-#3. MODEL :)
+############################################################################
+#                      VACCINE RECEIPT DATAFRAME                           #
+############################################################################
+
+drops = c("DMMR1","MMR1_AGE")
+
+TRAIN_MMR_RECEIPT <- TRAIN_MMR[ , !(names(TRAIN_MMR) %in% drops)]
+TEST_MMR_RECEIPT <- TEST_MMR[ , !(names(TEST_MMR) %in% drops)]
+
+sum(is.na(TRAIN_MMR_RECEIPT)) #No NAs
+sum(is.na(TEST_MMR_RECEIPT)) #No NAs
+
+############################################################################
+#                      AGE PREDICTION DATAFRAME                            #
+############################################################################
+
+TRAIN_MMR_AGE<- subset(TRAIN_MMR, TRAIN_MMR$Missing_MMR == 0)
+TEST_MMR_AGE <- subset(TEST_MMR, TEST_MMR$Missing_MMR == 0)
+
+sum(is.na(TRAIN_MMR_AGE)) #No NAs
+sum(is.na(TEST_MMR_AGE)) #No NAs
